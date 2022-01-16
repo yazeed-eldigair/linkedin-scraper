@@ -41,10 +41,12 @@ function lookupInfo() {
   console.log("injected succesfully!");
   let name = document.getElementsByTagName("h1")[0].innerText;
   let url = document.URL;
-  console.log("Profile name:", name);
-  console.log("Profile URL:", url);
+  let title = document.getElementsByClassName("text-body-medium break-words")[0].innerText;
+  let location = document.getElementsByClassName("text-body-small inline t-black--light break-words")[0].innerText;
   return {
     name: name,
     url: url,
+    title: title,
+    location: location
   };
 }
