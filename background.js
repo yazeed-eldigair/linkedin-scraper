@@ -9,6 +9,9 @@ console.clear();
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        console.log(request.profileArray.flat());
+        let profiles = request.profileArray.flat().map(injectionResult => {
+          return injectionResult.result;
+        });
+        console.log(profiles);
       }
 );
