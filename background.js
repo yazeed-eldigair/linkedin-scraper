@@ -2,7 +2,7 @@
 // DONE <== Add "Scrape 'Em" button
 // DONE <== Add logo
 // DONE <== Obtain URLs of current open tabs
-// getElements that contain the name of the person
+// DONE <== Lookup each profile info
 // Store URLs and names into a CSV file
 
 console.clear();
@@ -12,6 +12,3 @@ chrome.runtime.onMessage.addListener(
         console.log(request.profileArray.flat());
       }
 );
-
-
-

@@ -1,7 +1,10 @@
 const button = document.getElementById("scrapy");
 
 button.addEventListener("click", async () => {
-  let tabsArray = await chrome.tabs.query({ currentWindow: true });
+  let tabsArray = await chrome.tabs.query({
+    currentWindow: true,
+    active: false,
+  });
   let urlArray = getURLs(tabsArray);
 
   // let [currentTab] = await chrome.tabs.query({
@@ -22,12 +25,11 @@ button.addEventListener("click", async () => {
         profileArray.push(profile);
         if (i === tabsArray.length - 1) {
           //Send array after receiving the final name
-         setTimeout(() => chrome.runtime.sendMessage({ profileArray }),5);
+          setTimeout(() => chrome.runtime.sendMessage({ profileArray }), 5);
         }
       }
     );
   }
-
 });
 
 function getURLs(tabsArray) {
@@ -43,6 +45,6 @@ function lookupInfo() {
   console.log("Profile URL:", url);
   return {
     name: name,
-    url: url
+    url: url,
   };
 }
