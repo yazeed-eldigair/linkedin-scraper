@@ -10,6 +10,8 @@ const workSheetName = "Freelancers";
 const workSheetColumnNames = ["name", "linkedin_url", "title", "location"];
 const filePath = `./outputFiles/${excelFileName}`;
 
+const profileCounter = 0;
+
 const app = express();
 
 app.use(express.json());
@@ -21,7 +23,8 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
   const profiles = req.body;
-  console.log("Number of profiles scraped:", profiles.length);
+  profileCounter = profileCounter + profiles.length;
+  console.log("Number of profiles scraped so far:", profileCounter);
   res.json("Profiles received succesully");
   excel.exportProfilesToExcel(
     profiles,
