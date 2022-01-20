@@ -7,13 +7,6 @@ button.addEventListener("click", async () => {
   });
   let urlArray = getURLs(tabsArray);
 
-  // let [currentTab] = await chrome.tabs.query({
-  //   active: true,
-  //   currentWindow: true,
-  // });
-
-  // chrome.runtime.sendMessage({ currentTab });
-
   const profileArray = [];
   for (let i = 0; i < tabsArray.length; i++) {
     chrome.scripting.executeScript(
@@ -39,14 +32,14 @@ function getURLs(tabsArray) {
 
 function lookupInfo() {
   console.log("injected succesfully!");
-  let name = document.getElementsByTagName("h1")[0].innerText;
-  let url = document.URL;
-  let title = document.getElementsByClassName("text-body-medium break-words")[0].innerText;
-  let location = document.getElementsByClassName("text-body-small inline t-black--light break-words")[0].innerText;
-  return {
+    let name = document.getElementsByTagName("h1")[0].innerText;
+    let url = document.URL;
+    let title = document.getElementsByClassName("text-body-medium break-words")[0].innerText;
+    let location = document.getElementsByClassName("text-body-small inline t-black--light break-words")[0].innerText;
+    return {
     name: name,
     url: url,
     title: title,
     location: location
-  };
+    };
 }

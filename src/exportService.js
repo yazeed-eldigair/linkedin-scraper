@@ -8,6 +8,12 @@ const exportProfilesToExcel = (
   path
 ) => {
   const porfilesArray = profiles.map((profile) => {
+    try {
+      let validProfile = profile.name;
+    } catch (error) {
+      console.log("not a valid profile tab");
+      return ['NULL','NULL','NULL','NULL'];
+    } 
     return [profile.name, profile.url, profile.title, profile.location];
   });
 
