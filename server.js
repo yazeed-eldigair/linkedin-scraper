@@ -10,7 +10,7 @@ const workSheetName = "Freelancers";
 const workSheetColumnNames = ["name", "linkedin_url", "title", "location"];
 const filePath = `./outputFiles/${excelFileName}`;
 
-const profileCounter = 0;
+let profileCounter = 0;
 
 const app = express();
 
