@@ -8,3 +8,5 @@
 .env.test.local
 .env.production.local
 
+# output
+Profiles.xlsx

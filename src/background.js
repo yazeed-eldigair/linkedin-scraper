@@ -1,14 +1,12 @@
 chrome.runtime.onInstalled.addListener(() => {
-  console.log("running...");
+  console.log("Running...");
 });
 
+chrome.runtime.onMessage.addListener((request) => {
+  const profiles = request.profileArray.flat().map(({result}) => result);
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  let profiles = request.profileArray.flat().map((injectionResult) => {
-    return injectionResult.result;
-  });
   fetch("http://localhost:3000", {
-    method: "post",
+    method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(profiles),
   })

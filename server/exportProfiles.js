@@ -8,28 +8,27 @@ const exportProfilesToExcel = (
   path
 ) => {
   const porfilesArray = profiles.map((profile) => {
-    try {
-      let validProfile = profile.name;
-    } catch (error) {
-      console.log("not a valid profile tab");
-      return ['NULL','NULL','NULL','NULL'];
-    } 
-    return [profile.name, profile.url, profile.title, profile.location];
+    return profile.name
+      ? [profile.name, profile.url, profile.title, profile.location]
+      : ['NA', 'NA', 'NA', 'NA']
   });
 
-  const workSheetData = [workSheetColumnNames, ...porfilesArray]; // "...porfilesArray" spreads the data array of objects
+  const workSheetData = [workSheetColumnNames, ...porfilesArray];
+
   let workBook, workSheet;
 
   // Check if excel file exists; otherwise, append data to existing file
   if (fs.existsSync(filePath)) {
     workBook = xlsx.readFile(filePath);
     workSheet = workBook.Sheets[workSheetName];
-    workSheetData.shift(); //remove header from data
+    workSheetData.shift(); // remove header from data
     xlsx.utils.sheet_add_aoa(workSheet, workSheetData, { origin: -1 });
+
   } else {
     workBook = xlsx.utils.book_new();
     workSheet = xlsx.utils.aoa_to_sheet(workSheetData);
     xlsx.utils.book_append_sheet(workBook, workSheet, workSheetName);
+
   }
   xlsx.writeFile(workBook, path.resolve(filePath));
 };
